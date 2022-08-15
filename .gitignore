@@ -1,5 +1,5 @@
 /node_modules
 /dist
 
-.eslintrc.json
-yarn.lock
+/.eslintrc.json
+/yarn.lock
