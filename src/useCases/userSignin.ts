@@ -1,14 +1,9 @@
 import { Request, Response } from "express";
-import { validationResult } from "express-validator";
 import con from "../database/connection.mysql"; 
 import Variables from "../entity/res.variables";
 
 
-interface BodyProps{
-  email:string;
-  cpf: string;
-  senha: string;
-};
+
 
 const userLoginWithEmail = async(req: Request, res: Response) => {
     const select = await con.connectData();

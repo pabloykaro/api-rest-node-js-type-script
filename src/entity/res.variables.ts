@@ -165,4 +165,256 @@ export default class Variables {
       return value.foto;
      }
    }
+
+   get getPagamento(): string{
+    this.schema = Joi.object({
+        pagamento: Joi.string().min(2).required()
+     });
+     const {value, error} =  this.schema.validate({pagamento: this.input.pagamento });
+     if(error){
+      return '0';
+     }else{
+      return value.pagamento;
+     }
+   }
+   
+   get getValorCorrida(): string{
+    this.schema = Joi.object({
+        valor_corrida: Joi.string().required()
+     });
+     const {value, error} =  this.schema.validate({valor_corrida: this.input.valor_corrida });
+     if(error){
+      return '0';
+     }else{
+      return value.valor_corrida;
+     }
+   }
+
+   get getNameCreate(): string{
+    this.schema = Joi.object({
+      name_create: Joi.string().min(8).required()
+     });
+     const {value, error} =  this.schema.validate({name_create: this.input.name_create });
+     if(error){
+      return '0';
+     }else{
+      return value.name_create;
+     }
+   }
+
+   get getOrigemName(): string{
+    this.schema = Joi.object({
+      origem_name: Joi.string().min(8).required()
+     });
+     const {value, error} =  this.schema.validate({origem_name: this.input.origem_name });
+     if(error){
+      return '0';
+     }else{
+      return value.origem_name;
+     }
+   }
+
+   get getDestinoName(): string{
+    this.schema = Joi.object({
+      destino_name: Joi.string().min(8).required()
+     });
+     const {value, error} =  this.schema.validate({destino_name: this.input.destino_name });
+     if(error){
+      return '0';
+     }else{
+      return value.destino_name;
+     }
+   }
+
+   get getLatitudePA(): string{
+    this.schema = Joi.object({
+      latitude_pa: Joi.string().required()
+     });
+     const {value, error} =  this.schema.validate({latitude_pa: this.input.latitude_pa });
+     if(error){
+      return '0';
+     }else{
+      return value.latitude_pa;
+     }
+   }
+
+   get getLatitudePB(): string{
+    this.schema = Joi.object({
+      latitude_pb: Joi.string().required()
+     });
+     const {value, error} =  this.schema.validate({latitude_pb: this.input.latitude_pb });
+     if(error){
+      return '0';
+     }else{
+      return value.latitude_pb;
+     }
+   }
+
+   get getLongitutdePA(): string{
+    this.schema = Joi.object({
+      longitude_pa: Joi.string().required()
+     });
+     const {value, error} =  this.schema.validate({longitude_pa: this.input.longitude_pa });
+     if(error){
+      return '0';
+     }else{
+      return value.longitude_pa;
+     }
+   }
+
+   get getLongitutdePB(): string{
+    this.schema = Joi.object({
+      longitude_pb: Joi.string().required()
+     });
+     const {value, error} =  this.schema.validate({longitude_pb: this.input.longitude_pb });
+     if(error){
+      return '0';
+     }else{
+      return value.longitude_pb;
+     }
+   }
+
+   get getDistanciaKM(): string{
+    this.schema = Joi.object({
+      distancia_km: Joi.string().required()
+     });
+     const {value, error} =  this.schema.validate({distancia_km: this.input.distancia_km });
+     if(error){
+      return '0';
+     }else{
+      return value.distancia_km;
+     }
+   }
+
+   get getTempoCorrida(): string{
+    this.schema = Joi.object({
+      tempo_min: Joi.string().required()
+     });
+     const {value, error} =  this.schema.validate({tempo_min: this.input.tempo_min });
+     if(error){
+      return '0';
+     }else{
+      return value.tempo_min;
+     }
+   }
+
+   get getTempoDePartida(): string{
+    this.schema = Joi.object({
+      tempo_de_partida: Joi.date().required()
+     });
+     const {value, error} =  this.schema.validate({tempo_de_partida: this.input.tempo_de_partida });
+     if(error){
+      return '0';
+     }else{
+      return value.tempo_de_partida;
+     }
+   }
+
+   get getEmailUserCreate(): string{
+    this.schema = Joi.object({
+      email_user_create: Joi.string().email({minDomainSegments: 2, tlds: {allow: true} }).required()
+     });
+     const {value, error} =  this.schema.validate({tempo_de_partida: this.input.email_user_create });
+     if(error){
+      return '0';
+     }else{
+      return value.email_user_create;
+     }
+   }
+
+   get getIdUserCreate(): string{
+    this.schema = Joi.object({
+      id_user_create: Joi.number().required()
+     });
+     const {value, error} =  this.schema.validate({id_user_create: this.input.id_user_create });
+     if(error){
+      return '0';
+     }else{
+      return value.id_user_create;
+     }
+   }
+
+   get getIdRun(): string{
+    this.schema = Joi.object({
+      id_run: Joi.number().required()
+     });
+     const {value, error} =  this.schema.validate({id_user_create: this.input.id_run });
+     if(error){
+      return '0';
+     }else{
+      return value.id_run;
+     }
+   }
+
+   get getStatusRun(): string{
+    this.schema = Joi.object({
+      status: Joi.string().required()
+     });
+     const {value, error} =  this.schema.validate({status: this.input.status });
+     if(error){
+      return '0';
+     }else{
+      return value.status;
+     }
+   }
+
+   get getReturnMoto(): string{
+    this.schema = Joi.object({
+      return_moto: Joi.number().required()
+     });
+     const {value, error} =  this.schema.validate({status: this.input.return_moto });
+     if(error){
+      return '0';
+     }else{
+      return value.return_moto;
+     }
+   }
+
+   get getDateCreateAt(): string{
+    this.schema = Joi.object({
+      create_at: Joi.date()
+     });
+     const {value, error} =  this.schema.validate({status: this.input.create_at });
+     if(error){
+      return '0';
+     }else{
+      return value.create_at;
+     }
+   }
+
+   get getDateArrivedRun(): string{
+    this.schema = Joi.object({
+      date_arrived: Joi.date()
+     });
+     const {value, error} =  this.schema.validate({status: this.input.date_arrived });
+     if(error){
+      return '0';
+     }else{
+      return value.date_arrived;
+     }
+   }
+
+   get getDateFinishRun(): string{
+    this.schema = Joi.object({
+      date_finish_run: Joi.date()
+     });
+     const {value, error} =  this.schema.validate({status: this.input.date_finish_run });
+     if(error){
+      return '0';
+     }else{
+      return value.date_finish_run;
+     }
+   }
+
+   get getArrivedRun(): string{
+    this.schema = Joi.object({
+      arrived_run: Joi.number().required()
+     });
+     const {value, error} =  this.schema.validate({status: this.input.arrived_run });
+     if(error){
+      return '0';
+     }else{
+      return value.arrived_run;
+     }
+   }
 }

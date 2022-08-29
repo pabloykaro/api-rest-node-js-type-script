@@ -1,17 +1,17 @@
 import { Request } from 'express';
-import {RowDataPacket} from 'mysql2/promise';
+import { RowDataPacket } from 'mysql2/promise';
 import con from '../database/connection.mysql';
 import Variables from '../entity/res.variables';
 
 
 type UsePropsLoginExists = Promise<{return_user: number}>;
 
-const UseHookLoginExists = async (req: Request): UsePropsLoginExists => {
-       const { getEmail, getCpf } = new Variables(req);
+const useHookUserRunExists = async (req: Request): UsePropsLoginExists => {
+       const { getIdUserCreate } = new Variables(req);
 
-       if(getEmail !== '0' && getCpf !== ""){
+       if(getIdUserCreate !== '0'){
         const query_login = await con.connectData();
-        const [rows] = await query_login.execute("SELECT status_da_conta FROM speed_users WHERE (cpf=? OR email=?)",[getCpf,getEmail]) as RowDataPacket[];
+        const [rows] = await query_login.execute("SELECT * FROM speed_runs WHERE id_user_create = ? AND status IN(?,?)",[getIdUserCreate,"find","in_route"]) as RowDataPacket[];
         if(rows.length > 0 ){
           const return_user = 1;
           return {return_user};
@@ -28,4 +28,4 @@ const UseHookLoginExists = async (req: Request): UsePropsLoginExists => {
       
 };
 
-export { UseHookLoginExists };
+export { useHookUserRunExists };

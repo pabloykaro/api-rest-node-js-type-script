@@ -1,9 +1,8 @@
 import { Request , Response } from 'express';
+import {RowDataPacket} from 'mysql2/promise';
 import con from '../database/connection.mysql';
 import Variables from '../entity/res.variables'; 
 import { UseHookLoginExists } from '../hook/useHookLoginExists';
-
-
 
 
 const createSignUpFromUser = async ( req: Request, res: Response) => {
@@ -19,7 +18,7 @@ const createSignUpFromUser = async ( req: Request, res: Response) => {
       if(return_user === 0){
 
       const insert = await con.connectData();
-      const [rows]: any = await insert.execute(
+      const [rows] = await insert.execute(
         "INSERT INTO speed_users (nascimento,senha,nome,email,telefone,cargo,cpf) VALUES (?,?,?,?,?,?,?)",
         [
           getNascimento,
@@ -29,7 +28,7 @@ const createSignUpFromUser = async ( req: Request, res: Response) => {
           getTelefone,
           getCargo,
           getCpf
-        ]);
+        ]) as RowDataPacket[];
         console.log(rows);
         if(rows.affectedRows > 0){
           return res.status(200).json({create: true});
@@ -49,7 +48,7 @@ const createSignUpFromOther = async ( req: Request, res: Response) => {
     getAnoMoto, getNascimento, getPassword, 
     getNome, getEmail, getTelefone, getCargo, getCpf 
   } = new Variables(req);
-  const { return_user }: boolean | any  = await UseHookLoginExists(req);
+  const { return_user } = await UseHookLoginExists(req);
   if(getNascimento === '0' || getPassword === '0' 
     || getNome === '0' || getEmail === '0' 
     || getTelefone === '0' || getCargo === '0' 
@@ -60,7 +59,7 @@ const createSignUpFromOther = async ( req: Request, res: Response) => {
   }else{
     if(return_user === 0){
     const insert = await con.connectData();
-    const [rows]: any = await insert.execute(
+    const [rows] = await insert.execute(
       "INSERT INTO speed_users (ano,nascimento,rg,modelo,senha,nome,email,telefone,cargo,cnh,placa,cpf) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
       [
         getAnoMoto,
@@ -75,7 +74,7 @@ const createSignUpFromOther = async ( req: Request, res: Response) => {
         getCnh,
         getPlaca,
         getCpf
-      ]);
+      ]) as RowDataPacket[];
       console.log(rows);
       if(rows.affectedRows > 0){
         return res.status(200).json({create: true});
